@@ -1,0 +1,165 @@
+<HTML>
+
+<head>
+  <title>Chobocho's Simple Calculator</title>
+  <style>
+    .tile {
+      text-align: center;
+      width: 90px;
+      height: 50px;
+      font-size: 24px;
+      background-color: white;
+      border: 1px solid black;
+      box-shadow: black 1px 1px;
+    }
+
+    .tileRed {
+      text-align: center;
+      width: 90px;
+      height: 50px;
+      font-size: 24px;
+      background-color: red;
+      border: 1px solid black;
+      box-shadow: black 1px 1px;
+    }
+
+    .tileOrange {
+      text-align: center;
+      width: 90px;
+      height: 50px;
+      font-size: 24px;
+      background-color: orange;
+      border: 1px solid black;
+      box-shadow: black 1px 1px;
+    }
+
+    .tileYellow {
+      text-align: center;
+      width: 90px;
+      height: 50px;
+      font-size: 24px;
+      background-color: yellow;
+      border: 1px solid black;
+      box-shadow: black 1px 1px;
+    }
+
+    .tileLightgreen {
+      text-align: center;
+      width: 90px;
+      height: 50px;
+      font-size: 24px;
+      background-color: Lightgreen;
+      border: 1px solid black;
+      box-shadow: black 1px 1px;
+    }
+
+    .tileRed {
+      text-align: center;
+      width: 90px;
+      height: 50px;
+      font-size: 24px;
+      background-color: red;
+      border: 1px solid black;
+      box-shadow: black 1px 1px;
+    }
+
+    .tileOrange {
+      text-align: center;
+      width: 90px;
+      height: 50px;
+      font-size: 24px;
+      background-color: orange;
+      border: 1px solid black;
+      box-shadow: black 1px 1px;
+    }
+
+    .tileYellow {
+      text-align: center;
+      width: 90px;
+      height: 50px;
+      font-size: 24px;
+      background-color: yellow;
+      border: 1px solid black;
+      box-shadow: black 1px 1px;
+    }
+
+    .tileLightgreen {
+      text-align: center;
+      width: 90px;
+      height: 50px;
+      font-size: 24px;
+      background-color: lightgreen;
+      border: 1px solid black;
+      box-shadow: black 1px 1px;
+    }
+
+    textarea {
+      height: 120px;
+      width: 380px;
+      text-align: right;
+      font-size: 24px;
+      border: 1px solid black;
+      box-shadow: black 1px 1px;
+      padding: 2px;
+    }
+
+    input {
+      height: 50px;
+      width: 280px;
+      text-align: right;
+      font-size: 24px;
+      background-color: "white";
+      border: 1px solid black;
+      box-shadow: black 1px 1px;
+    }
+  </style>
+  <script src="script/calculator.js"></script>
+  <script language="JavaScript">
+  </script>
+</head>
+
+<body onload="init()">
+  <table align="center">
+    <tr>
+      <td colspan=4>
+        <textarea id="result" disabled=true cols="35" rows="1"></textarea>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <table align=center>
+          <tr>
+            <td class="tileRed" id="btnA">A</td>
+            <td colspan="3"><input id="sa" value="0" disabled=true></input>
+          </tr>
+          <tr>
+            <td class="tileOrange" id="btnB">B</td>
+            <td colspan="3"><input id="sb" value="0" disabled=true></input>
+          </tr>
+          <tr>
+            <td class="tileYellow" id="btnC">C</td>
+            <td colspan="3"><input id="sc" value="0" disabled=true></input>
+          </tr>
+          <tr>
+            <td class="tileLightgreen" id="btnD">D</td>
+            <td colspan="3"><input id="sd" value="0" disabled=true></input>
+          </tr>
+        </table>
+      </td>
+    <tr>
+      <td>
+        <table id="keypad" aligne="center">
+          <tr>
+            <td class="tileRed" id="btnSA">SA</td>
+            <td class="tileOrange" id="btnSB">SB</td>
+            <td class="tileYellow" id="btnSC">SC</td>
+            <td class="tileLightgreen" id="btnSD">SD</td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+    </tr>
+  </table>
+</body>
+
+</HTML>

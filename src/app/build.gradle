@@ -1,0 +1,80 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 29
+    buildToolsVersion "29.0.3"
+
+    def versionPropsFile = file('versioninfo.properties')
+    def Properties versionInfo = new Properties()
+
+    if (versionPropsFile.canRead()) {
+        versionInfo.load(new FileInputStream(versionPropsFile))
+    } else {
+        versionInfo['VERSION_HEADER'] = "0.1105"
+        versionInfo['VERSION_CODE'] = 1
+        versionInfo['MONTHLY_RELEASE_COUNT'] = 1
+        versionInfo['BUILD_COUNT'] = 0
+    }
+
+    def versionHeader = versionInfo['VERSION_HEADER']
+    def releaseVersionCode = versionInfo['VERSION_CODE'].toInteger()
+    def versionCount = versionInfo['MONTHLY_RELEASE_COUNT'].toInteger()
+    def buildCount = versionInfo['BUILD_COUNT'].toInteger()
+
+    def taskName = gradle.startParameter.taskNames
+    def addVersion = 1
+    def isReleaseVersion = false
+
+    if (":app:bundleRelease" in taskName) {
+        println '---[bundleRelease]---'
+        releaseVersionCode += addVersion
+        versionCount += addVersion
+        isReleaseVersion = true
+    }
+
+    buildCount += addVersion
+
+    versionInfo['VERSION_HEADER'] = versionHeader.toString()
+    versionInfo['VERSION_CODE'] = releaseVersionCode.toString()
+    versionInfo['MONTHLY_RELEASE_COUNT'] = versionCount.toString()
+    versionInfo['BUILD_COUNT'] = isReleaseVersion ? "1" : buildCount.toString()
+
+    versionInfo.store(versionPropsFile.newWriter(), null)
+
+    def date = new Date();
+    def alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    def thisYear =  alphabet.charAt(date.getYear() + 1900 - 2001)
+    def thisMonth = alphabet.charAt(date.getMonth())
+    def monthVersion = "123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ".charAt(versionCount)
+
+    println '-------------------'
+    println taskName
+    println "${versionHeader}.${thisYear}${thisMonth}${monthVersion}.${buildCount}"
+    println '-------------------'
+    defaultConfig {
+        applicationId "com.chobocho.jscalculator"
+        minSdkVersion 26
+        targetSdkVersion 29
+        versionCode releaseVersionCode
+        versionName "${versionHeader}.${thisYear}${thisMonth}${monthVersion}.${buildCount}"
+        setProperty("archivesBaseName", "jsCalculator_$versionName")
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: "libs", include: ["*.jar"])
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.1'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+
+}
