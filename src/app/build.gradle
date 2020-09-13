@@ -11,14 +11,14 @@ android {
         versionInfo.load(new FileInputStream(versionPropsFile))
     } else {
         versionInfo['VERSION_HEADER'] = "0.1105"
-        versionInfo['VERSION_CODE'] = 1
-        versionInfo['MONTHLY_RELEASE_COUNT'] = 1
+        versionInfo['VERSION_CODE'] = 0
+        versionInfo['MONTHLY_RELEASE_COUNT'] = 0
         versionInfo['BUILD_COUNT'] = 0
     }
 
     def versionHeader = versionInfo['VERSION_HEADER']
     def releaseVersionCode = versionInfo['VERSION_CODE'].toInteger()
-    def versionCount = versionInfo['MONTHLY_RELEASE_COUNT'].toInteger()
+    def monthVersionCount = versionInfo['MONTHLY_RELEASE_COUNT'].toInteger()
     def buildCount = versionInfo['BUILD_COUNT'].toInteger()
 
     def taskName = gradle.startParameter.taskNames
@@ -28,7 +28,7 @@ android {
     if (":app:bundleRelease" in taskName) {
         println '---[bundleRelease]---'
         releaseVersionCode += addVersion
-        versionCount += addVersion
+        monthVersionCount += addVersion
         isReleaseVersion = true
     }
 
@@ -36,7 +36,7 @@ android {
 
     versionInfo['VERSION_HEADER'] = versionHeader.toString()
     versionInfo['VERSION_CODE'] = releaseVersionCode.toString()
-    versionInfo['MONTHLY_RELEASE_COUNT'] = versionCount.toString()
+    versionInfo['MONTHLY_RELEASE_COUNT'] = monthVersionCount.toString()
     versionInfo['BUILD_COUNT'] = isReleaseVersion ? "1" : buildCount.toString()
 
     versionInfo.store(versionPropsFile.newWriter(), null)
@@ -45,7 +45,7 @@ android {
     def alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
     def thisYear =  alphabet.charAt(date.getYear() + 1900 - 2001)
     def thisMonth = alphabet.charAt(date.getMonth())
-    def monthVersion = "123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ".charAt(versionCount)
+    def monthVersion = "123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ".charAt(monthVersionCount)
 
     println '-------------------'
     println taskName

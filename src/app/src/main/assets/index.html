@@ -6,7 +6,17 @@
     .tile {
       text-align: center;
       width: 90px;
-      height: 50px;
+      height: 40px;
+      font-size: 24px;
+      background-color: white;
+      border: 1px solid black;
+      box-shadow: black 1px 1px;
+    }
+
+    .clearButton {
+      text-align: center;
+      width: 50px;
+      height: 40px;
       font-size: 24px;
       background-color: white;
       border: 1px solid black;
@@ -16,9 +26,9 @@
     .tileRed {
       text-align: center;
       width: 90px;
-      height: 50px;
+      height: 40px;
       font-size: 24px;
-      background-color: red;
+      background-color: #EC7063;
       border: 1px solid black;
       box-shadow: black 1px 1px;
     }
@@ -26,7 +36,7 @@
     .tileOrange {
       text-align: center;
       width: 90px;
-      height: 50px;
+      height: 40px;
       font-size: 24px;
       background-color: orange;
       border: 1px solid black;
@@ -36,7 +46,7 @@
     .tileYellow {
       text-align: center;
       width: 90px;
-      height: 50px;
+      height: 40px;
       font-size: 24px;
       background-color: yellow;
       border: 1px solid black;
@@ -46,7 +56,7 @@
     .tileLightgreen {
       text-align: center;
       width: 90px;
-      height: 50px;
+      height: 40px;
       font-size: 24px;
       background-color: Lightgreen;
       border: 1px solid black;
@@ -56,9 +66,9 @@
     .tileRed {
       text-align: center;
       width: 90px;
-      height: 50px;
+      height: 40px;
       font-size: 24px;
-      background-color: red;
+      background-color: #EC7063;
       border: 1px solid black;
       box-shadow: black 1px 1px;
     }
@@ -66,7 +76,7 @@
     .tileOrange {
       text-align: center;
       width: 90px;
-      height: 50px;
+      height: 40px;
       font-size: 24px;
       background-color: orange;
       border: 1px solid black;
@@ -76,7 +86,7 @@
     .tileYellow {
       text-align: center;
       width: 90px;
-      height: 50px;
+      height: 40px;
       font-size: 24px;
       background-color: yellow;
       border: 1px solid black;
@@ -86,7 +96,7 @@
     .tileLightgreen {
       text-align: center;
       width: 90px;
-      height: 50px;
+      height: 40px;
       font-size: 24px;
       background-color: lightgreen;
       border: 1px solid black;
@@ -104,8 +114,8 @@
     }
 
     input {
-      height: 50px;
-      width: 280px;
+      height: 40px;
+      width: 230px;
       text-align: right;
       font-size: 24px;
       background-color: "white";
@@ -131,18 +141,22 @@
           <tr>
             <td class="tileRed" id="btnA">A</td>
             <td colspan="3"><input id="sa" value="0" disabled=true></input>
+            <td class="clearButton" id="btnCA">CA</td>
           </tr>
           <tr>
             <td class="tileOrange" id="btnB">B</td>
             <td colspan="3"><input id="sb" value="0" disabled=true></input>
+            <td class="clearButton" id="btnCB">CB</td>
           </tr>
           <tr>
             <td class="tileYellow" id="btnC">C</td>
             <td colspan="3"><input id="sc" value="0" disabled=true></input>
+            <td class="clearButton" id="btnCC">CC</td>
           </tr>
           <tr>
             <td class="tileLightgreen" id="btnD">D</td>
             <td colspan="3"><input id="sd" value="0" disabled=true></input>
+            <td class="clearButton" id="btnCD">CD</td>
           </tr>
         </table>
       </td>
@@ -150,10 +164,16 @@
       <td>
         <table id="keypad" aligne="center">
           <tr>
-            <td class="tileRed" id="btnSA">SA</td>
-            <td class="tileOrange" id="btnSB">SB</td>
-            <td class="tileYellow" id="btnSC">SC</td>
-            <td class="tileLightgreen" id="btnSD">SD</td>
+            <td class="tileRed" id="btnAP">A+</td>
+            <td class="tileOrange" id="btnBP">B+</td>
+            <td class="tileYellow" id="btnCP">C+</td>
+            <td class="tileLightgreen" id="btnDP">D+</td>
+          </tr>
+          <tr>
+            <td class="tileRed" id="btnAM">A-</td>
+            <td class="tileOrange" id="btnBM">B-</td>
+            <td class="tileYellow" id="btnCM">C-</td>
+            <td class="tileLightgreen" id="btnDM">D-</td>
           </tr>
         </table>
       </td>
