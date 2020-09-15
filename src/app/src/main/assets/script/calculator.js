@@ -152,9 +152,6 @@ function recall_memory(mm_id) {
     if (ret == '0') {
        ret = "";
     } 
-    if (ret.length > 0) {
-        ret += '+';
-    }
     ret += document.getElementById(mm_id).value; 
 }
 
