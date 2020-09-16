@@ -152,7 +152,11 @@ function recall_memory(mm_id) {
     if (ret == '0') {
        ret = "";
     } 
-    ret += document.getElementById(mm_id).value; 
+    let mm = document.getElementById(mm_id).value;
+    if (mm == '0') {
+        return;
+    }
+    ret += mm;
 }
 
 function memory_add_ret(btn_id) {
