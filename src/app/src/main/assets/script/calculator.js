@@ -1,8 +1,11 @@
 var sum = 0;
 var ret = "";
-let prev_ret = "";
+let prev_ret1 = "";
+let prev_ret2 = "";
 var keypadValue = ["AC", "Sqrt", "Pi", "Undo", "CE", "<-", "(", ")", "7", "8", "9", "/", "4", "5", "6", "*", "1", "2", "3", "-", "0", ".", "=", "+"];
 var functionEvent = {};
+var result_view = "result1";
+
 function init() {
     var table = document.getElementById("keypad");
 
@@ -19,13 +22,16 @@ function init() {
             td.value = idx;
             td.index = idx;
             td.textContent = keypadValue[idx];
+            if (td.textContent == "CE") {
+                td.className = "tileRed";
+            }
             td.onclick = onClick;
             tr.appendChild(td);
         }
         table.appendChild(tr);
     }
 
-    var MmkeypadId = ["btnAP", "btnBP", "btnCP", "btnDP", "btnAM", "btnBM", "btnCM", "btnDM", "btnA", "btnB", "btnC", "btnD", "btnCA", "btnCB", "btnCC", "btnCD"];
+    var MmkeypadId = ["btnMR", "btnMP", "btnMM", "btnMC", "btnChangeView"];
 
     for (var i = 0; i < MmkeypadId.length; i++) {
         var btn = document.getElementById(MmkeypadId[i]);
@@ -60,38 +66,44 @@ function init() {
     functionEvent['8'] = { 'func': add_text, 'param':['8']};
     functionEvent['9'] = { 'func': add_text, 'param':['9']};
 
-    functionEvent['A+'] = { 'func': memory_add_ret, 'param':['sa']};
-    functionEvent['B+'] = { 'func': memory_add_ret, 'param':['sb']};
-    functionEvent['C+'] = { 'func': memory_add_ret, 'param':['sc']};
-    functionEvent['D+'] = { 'func': memory_add_ret, 'param':['sd']};
-    functionEvent['A-'] = { 'func': memory_minus_ret, 'param':['sa']};
-    functionEvent['B-'] = { 'func': memory_minus_ret, 'param':['sb']};
-    functionEvent['C-'] = { 'func': memory_minus_ret, 'param':['sc']};
-    functionEvent['D-'] = { 'func': memory_minus_ret, 'param':['sd']};
-    functionEvent['A'] = { 'func': recall_memory, 'param':['sa']};
-    functionEvent['B'] = { 'func': recall_memory, 'param':['sb']};
-    functionEvent['C'] = { 'func': recall_memory, 'param':['sc']};
-    functionEvent['D'] = { 'func': recall_memory, 'param':['sd']};
-    functionEvent['CA'] = { 'func': clear_memory, 'param':['sa']};
-    functionEvent['CB'] = { 'func': clear_memory, 'param':['sb']};
-    functionEvent['CC'] = { 'func': clear_memory, 'param':['sc']};
-    functionEvent['CD'] = { 'func': clear_memory, 'param':['sd']};
+    functionEvent['MR'] = { 'func': recall_memory, 'param':['memory']};
+    functionEvent['M+'] = { 'func': memory_add_ret, 'param':['memory']};
+    functionEvent['M-'] = { 'func': memory_minus_ret, 'param':['memory']};
+    functionEvent['MC'] = { 'func': clear_memory, 'param':['memory']};
 
+    functionEvent['View'] = { 'func': chooseResultView, 'param':[]};
     //test_calculator();
+}
+
+function chooseResultView() {
+    document.getElementById(result_view).style.backgroundColor = "white";
+    if (result_view == "result1") {
+        result_view = "result2";
+        document.getElementById(result_view).style.backgroundColor = "yellow";
+    } else {
+        result_view = "result1";
+        document.getElementById(result_view).style.backgroundColor = "yellow";
+    }
+    ret = document.getElementById(result_view).value;
+    console.log("ChooseResultView: " + result_view);
 }
 
 function clearAll() {
     ret = "0";
-    document.getElementById("result").value = ret;
-    document.getElementById("sa").value = "0";
-    document.getElementById("sb").value = "0";
-    document.getElementById("sc").value = "0";
-    document.getElementById("sd").value = "0";
+    document.getElementById("result1").value = ret;
+    document.getElementById("result2").value = ret;
+    document.getElementById("memory").value = "0";
 }
 
 function clearResult() {
+    if (result_view == "result1") {
+        prev_ret1 = ret;
+    } else {
+        prev_ret2 = ret;
+    }
+
     ret = "0";
-    document.getElementById("result").value = ret;
+    document.getElementById(result_view).value = ret;
 }
 
 function sqrt() {
@@ -103,11 +115,15 @@ function sqrt() {
         return;
     }
     ret = Math.sqrt(ret);
-    document.getElementById("result").value = ret;
+    document.getElementById(result_view).value = ret;
  }
 
 function undo() {
-    ret = prev_ret;
+    if (result_view == "result1") {
+        ret = prev_ret1;
+    } else {
+        ret = prev_ret2;
+    }
 }
 
 function del() {
@@ -118,7 +134,11 @@ function del() {
 }
 
 function calculator() {
-    prev_ret = ret;
+    if (result_view == "result1") {
+        prev_ret1 = ret;
+    } else {
+        prev_ret2 = ret;
+    }
     tsum = ret;
     try {
         console.log(ret);
@@ -224,7 +244,7 @@ function onClick(e) {
     if (typeof ret == "undefined") {
         ret = "0";
     }
-    document.getElementById("result").value = ret;
+    document.getElementById(result_view).value = ret;
     _OnClick(id);
 }
 
@@ -235,7 +255,7 @@ function _OnClick(id) {
     } else {
         functionEvent[id]['func'](functionEvent[id]['param']);
     }
-    document.getElementById("result").value = ret;     
+    document.getElementById(result_view).value = ret;
 }
 
 function test_calculator() {

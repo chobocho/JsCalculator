@@ -136,7 +136,7 @@
     .tileLightgreen {
       text-align: center;
       width: 68px;
-      height: px;
+      height: 38px;
       font-size: 24px;
       background-color: lightgreen;
       border: 1px solid black;
@@ -154,10 +154,10 @@
 
     input {
       height: 30px;
-      width: 172px;
+      width: 220px;
       text-align: right;
       font-size: 24px;
-      background-color: "white";
+      background-color: white;
       border: 1px solid black;
       box-shadow: black 1px 1px;
     }
@@ -170,32 +170,21 @@
 <body onload="init()">
   <table align="center">
     <tr>
-      <td colspan=4>
-        <textarea id="result" disabled=true cols="35" rows="1"></textarea>
+      <td colspan=3>
+        <textarea id="result1" disabled=true style="background-color:yellow" cols="35" rows="1"></textarea>
+      </td>
+    </tr>
+    <tr>
+      <td colspan=3>
+        <textarea id="result2" disabled=true style="background-color:white" cols="35" rows="1"></textarea>
       </td>
     </tr>
     <tr>
       <td>
         <table align=center>
           <tr>
-            <td class="labelRed" id="label_a">A</td>
-            <td colspan="3"><input id="sa" value="0" disabled=true></input>
-            <td class="clearButton" id="btnCA">CA</td>
-          </tr>
-          <tr>
-            <td class="labelOrange" id="label_b">B</td>
-            <td colspan="3"><input id="sb" value="0" disabled=true></input>
-            <td class="clearButton" id="btnCB">CB</td>
-          </tr>
-          <tr>
-            <td class="labelYellow" id="label_c">C</td>
-            <td colspan="3"><input id="sc" value="0" disabled=true></input>
-            <td class="clearButton" id="btnCC">CC</td>
-          </tr>
-          <tr>
-            <td class="labelLightgreen" id="label_d">D</td>
-            <td colspan="3"><input id="sd" value="0" disabled=true></input>
-            <td class="clearButton" id="btnCD">CD</td>
+            <td class="labelOrange" id="btnChangeView">View</td>
+            <td colspan="3"><input id="memory" value="0" disabled=true></input></td>
           </tr>
         </table>
       </td>
@@ -203,22 +192,10 @@
       <td>
         <table id="keypad" aligne="center">
           <tr>
-            <td class="tileRed" id="btnAP">A+</td>
-            <td class="tileOrange" id="btnBP">B+</td>
-            <td class="tileYellow" id="btnCP">C+</td>
-            <td class="tileLightgreen" id="btnDP">D+</td>
-          </tr>
-          <tr>
-            <td class="tileRed" id="btnAM">A-</td>
-            <td class="tileOrange" id="btnBM">B-</td>
-            <td class="tileYellow" id="btnCM">C-</td>
-            <td class="tileLightgreen" id="btnDM">D-</td>
-          </tr>
-          <tr>
-            <td class="tileRed" id="btnA">A</td>
-            <td class="tileOrange" id="btnB">B</td>
-            <td class="tileYellow" id="btnC">C</td>
-            <td class="tileLightgreen" id="btnD">D</td>
+            <td class="tileRed" id="btnMR">MR</td>
+            <td class="tileOrange" id="btnMP">M+</td>
+            <td class="tileYellow" id="btnMM">M-</td>
+            <td class="tileLightgreen" id="btnMC">MC</td>
           </tr>
         </table>
       </td>
