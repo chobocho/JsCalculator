@@ -1,8 +1,9 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 30
-    buildToolsVersion "30"
+    namespace "com.chobocho.jscalculator"
+    compileSdk 36
+    buildToolsVersion "36.0.0"
 
     def versionPropsFile = file('versioninfo.properties')
     def Properties versionInfo = new Properties()
@@ -53,8 +54,8 @@ android {
     println '-------------------'
     defaultConfig {
         applicationId "com.chobocho.jscalculator"
-        minSdkVersion 26
-        targetSdkVersion 30
+        minSdkVersion 27
+        targetSdkVersion 36
         versionCode releaseVersionCode
         versionName "${versionHeader}.${thisYear}${thisMonth}${monthVersion}.${buildCount}"
         setProperty("archivesBaseName", "jsCalculator_$versionName")
